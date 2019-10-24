@@ -1,0 +1,37 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "ua.com.wrc.proto";
+option java_outer_classname = "WebResourceCheckerProto";
+
+service WebResourceChecker {
+    // blocking
+    rpc checkSingleWebResource (WebResourceLocator) returns (WebResourceResponseInfo) {
+    }
+
+    // blocking
+    rpc checkMultipleWebResources (WebResourceLocators) returns (stream WebResourceResponseInfo) {
+    }
+
+    // nonblocking
+    rpc checkMultipleWebResourcesAsync (stream WebResourceLocator) returns (stream WebResourceResponseInfo) {
+    }
+
+}
+
+// Request model with a URL of the Web Resource to locate
+message WebResourceLocator {
+    string url = 1;
+}
+
+// Request model with multiple WebResourceLocator instances
+message WebResourceLocators {
+    repeated WebResourceLocator locators = 1;
+}
+
+// Response model with information about the Web Resource response
+message WebResourceResponseInfo {
+    int32 response_code = 1;
+    int64 response_time = 2;
+    string url = 3;
+}
+
