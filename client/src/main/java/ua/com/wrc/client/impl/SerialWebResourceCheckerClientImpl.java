@@ -25,9 +25,6 @@ public class SerialWebResourceCheckerClientImpl extends AbstractWebResourceCheck
         implements SerialWebResourceCheckerClient {
     private static final Logger LOG = Logger.getLogger(SerialWebResourceCheckerClientImpl.class.getName());
 
-    /**
-     * Construct client for accessing RouteGuide server at {@code host:port}.
-     */
     public SerialWebResourceCheckerClientImpl(String host, int port) {
         this(ManagedChannelBuilder.forAddress(host, port).usePlaintext());
     }
@@ -35,7 +32,6 @@ public class SerialWebResourceCheckerClientImpl extends AbstractWebResourceCheck
     public SerialWebResourceCheckerClientImpl(ManagedChannelBuilder<?> channelBuilder) {
         super(channelBuilder, Executors.newSingleThreadExecutor());
     }
-
 
     @Override
     public Set<WebResourceResponseInfo> blockingSerialCallsToMultipleResources(final Set<String> urlSet)
@@ -63,7 +59,6 @@ public class SerialWebResourceCheckerClientImpl extends AbstractWebResourceCheck
                 .peek(this::logResponseInfo)
                 .collect(Collectors.toSet());
     }
-
 
     @Override
     public CompletableFuture<Set<WebResourceResponseInfo>> nonblockingSerialCallsToMultipleResources(

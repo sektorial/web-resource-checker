@@ -57,7 +57,6 @@ public class ConcurrentWebResourceCheckerClientImpl extends AbstractWebResourceC
         return responseInfos;
     }
 
-
     @Override
     public CompletableFuture<Set<WebResourceResponseInfo>> nonblockingConcurrentCallsToMultipleResources(
             final Set<String> urlSet) throws WebResourceCheckerClientException {
@@ -68,20 +67,5 @@ public class ConcurrentWebResourceCheckerClientImpl extends AbstractWebResourceC
     protected Logger getLog() {
         return LOG;
     }
-
-
-//    /**
-//     * /** Issues several different requests and then exits.
-//     */
-//    public static void main(String[] args) throws InterruptedException {
-//        WebResourceCheckerClientImpl client = new WebResourceCheckerClientImpl("localhost", 8980);
-//        try {
-//            // Looking for a valid feature
-//            client.blockingCallToSingleResource("https://www.google.com/");
-//        } finally {
-//            client.shutdown();
-//        }
-//    }
-
 
 }

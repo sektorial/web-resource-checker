@@ -26,17 +26,6 @@ public abstract class AbstractWebResourceCheckerClient implements WebResourceChe
     protected final WebResourceCheckerGrpc.WebResourceCheckerStub asyncStub;
     protected final ExecutorService executorService;
 
-
-//    /**
-//     * Construct client for accessing RouteGuide server at {@code host:port}.
-//     */
-//    public AbstractWebResourceCheckerClient(String host, int port) {
-//        this(ManagedChannelBuilder.forAddress(host, port).usePlaintext());
-//    }
-
-    /**
-     * Construct client for accessing RouteGuide server using the existing channel.
-     */
     protected AbstractWebResourceCheckerClient(
             final ManagedChannelBuilder<?> channelBuilder, final ExecutorService executorService
     ) {
@@ -124,7 +113,6 @@ public abstract class AbstractWebResourceCheckerClient implements WebResourceChe
             throw new WebResourceCheckerClientException(e);
         }
 
-        // Mark the end of requests
         requestObserver.onCompleted();
 
         return completableFuture;
